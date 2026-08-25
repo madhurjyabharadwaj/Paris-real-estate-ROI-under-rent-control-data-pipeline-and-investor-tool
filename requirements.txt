@@ -1,0 +1,17 @@
+# Core data handling
+pandas>=2.0
+numpy>=1.24
+
+# Geospatial
+geopandas>=0.13
+shapely>=2.0
+fiona>=1.9
+
+# Data acquisition
+requests>=2.31
+tqdm>=4.65
+
+# Interactive map and notebook interface
+folium>=0.14
+ipywidgets>=8.0
+jupyter>=1.0
