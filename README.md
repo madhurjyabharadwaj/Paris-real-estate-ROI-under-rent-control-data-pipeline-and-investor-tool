@@ -16,7 +16,7 @@ The core question: **what ROI can an investor realistically expect on a Paris ap
 | **ROI engine** | A cash-on-cash return calculated per transaction, using the legally capped rent rather than a market estimate |
 | **Investor tool** | Filter by rooms, budget, and arrondissement; get the top matches as a table and as a colour-coded interactive map |
 
-This repository covers the data pipeline and the investor tool. The exploratory charts and the predictive model that appeared in the class presentation are not included here.
+This repository covers the data pipeline and the investor tool. The exploratory charts and the predictive model built alongside them are not included here.
 
 ---
 
@@ -68,7 +68,7 @@ Step 2  Parse every KML into one GeoDataFrame (8,960 rows)
 Step 3  Clean DVF and DPE independently
         Both reduced to a standardised ZIP_STREET_NUMBER address key
                     |
-Step 4  Left-join DVF onto DPE on that key (~58% match rate)
+Step 4  Left-join DVF onto DPE on that key
         Output: paris_transactions_merged.csv
                     |
 Step 5  Spatial join each transaction into its rent zone, apply the
@@ -83,7 +83,7 @@ Step 6  Filter, rank, and map
 
 DVF and DPE share no identifier. The only bridge is the street address, and the two datasets format addresses differently: DPE often leaves the street number field empty and folds the number into the street name instead, and both use inconsistent accenting and punctuation.
 
-Step 3 handles this by folding accents to ASCII, uppercasing, stripping punctuation, and pulling stray street numbers back out of the street name with a regex. That produces roughly a 58% match rate between the two datasets, which is a strong result for address-based joining on French public data.
+Step 3 handles this by folding accents to ASCII, uppercasing, stripping punctuation, and pulling stray street numbers back out of the street name with a regex. That key is what makes an address-based join between two datasets with no shared identifier work at all.
 
 ### The rent cap
 
@@ -167,7 +167,7 @@ conda install -c conda-forge geopandas fiona shapely
 jupyter notebook notebooks/paris_roi_pipeline.ipynb
 ```
 
-Run the cells top to bottom. The final cell renders the interactive widget interface shown above. This is the version presented in class.
+Run the cells top to bottom. The final cell renders the interactive widget interface shown above.
 
 ### Option 2: the pipeline scripts
 
@@ -208,7 +208,7 @@ paris-roi-rent-control/
 ├── docs/
 │   └── images/                      output screenshots
 ├── notebooks/
-│   └── paris_roi_pipeline.ipynb     the notebook presented in class
+│   └── paris_roi_pipeline.ipynb     the exploratory notebook
 └── src/
     ├── config.py                    paths, thresholds, financial assumptions
     ├── step1_download_kml.py        fetch DRIHL rent-control KMLs
@@ -230,14 +230,9 @@ Open data plus a pipeline makes that legible. An individual can benchmark a mark
 
 ---
 
-## Authors
+## Author
 
-Group project, Python Programming, ESSEC Business School.
-
-- Foucauld Riché
-- Bashir Stanakzai
-- Edoardo Grossi
-- Madhurjya Bharadwaj
+Madhurjya Bharadwaj — [madhurjyabharadwaj.com](https://www.madhurjyabharadwaj.com)
 
 ---
 

@@ -3,7 +3,6 @@ Step 4: The grand unification (merging DVF and DPE).
 
 A left join on the standardised address key keeps every Paris apartment sale and
 attaches the energy class and construction year wherever an address match exists.
-The project observed roughly a 58% match rate between the two datasets.
 
 Output: paris_transactions_merged.csv
 """
